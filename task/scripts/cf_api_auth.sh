@@ -8,7 +8,7 @@ tar xvf cf.tgz
 chmod +x cf
 mv cf /usr/local/bin
 date +"%T.%N"
-cf api -v ${CF_TARGET}
+cf api -v ${CF_TARGET} --skip-ssl-validation
 date +"%T.%N"
 cf auth ${CF_USERNAME} ${CF_PASSWORD}
 date +"%T.%N"
