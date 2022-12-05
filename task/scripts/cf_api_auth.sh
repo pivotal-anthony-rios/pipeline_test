@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -eux
+env
 
 date +"%T.%N"
 cf api -v ${CF_TARGET}
