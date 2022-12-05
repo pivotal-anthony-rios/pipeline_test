@@ -1,14 +1,14 @@
 ---
 platform: linux
 
+inputs:
+- name: pipeline_test
+- name: config
+
 params:
   CF_USERNAME:
   CF_PASSWORD:
   CF_TARGET:
-
-inputs:
-- name: pipeline_test
-- name: config
 
 run:
   path: pipeline_test/task/scripts/cf_api_auth.sh
