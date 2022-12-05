@@ -15,7 +15,7 @@ resources:
     uri: ((cfauth-testing))
     private_key: ((rios-plat-auto-pipes-deploy-key))
     branch: master
-- name: test-repo-source
+- name: pipeline_test
   type: git
   source:
     uri: ((cfauth-testing))
@@ -34,14 +34,14 @@ jobs:
 - name: login
   serial: true
   plan:
-  - in_parallel: 
-    - get: config
-    - get: test-repo-source
-    - get: platform-automation-image
+#  - in_parallel: 
+  - get: config
+  - get: pipeline_test
+  - get: platform-automation-image
   - task: cfauth-login
     image: platform-automation-image
     file: pipeline_test/task/cfauth_login.yml
-    params:
-      CF_USERNAME: ((cf-username))
-      CF_PASSWORD: ((cf-password))
-      CF_TARGET: ((cf-api))
+#    params:
+#      CF_USERNAME: ((cf-username))
+#      CF_PASSWORD: ((cf-password))
+#      CF_TARGET: ((cf-api))
