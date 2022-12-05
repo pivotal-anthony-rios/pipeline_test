@@ -2,8 +2,8 @@
 platform: linux
 
 inputs:
-#- name: pipeline_test
-- name: config
+- name: pipeline_test
+#- name: config
 
 params:
   CF_USERNAME:
