@@ -38,10 +38,11 @@ jobs:
   - get: config
   - get: pipeline_test
   - get: platform-automation-image
+    params: {unpack: true}
   - task: cfauth-login
     image: platform-automation-image
     file: pipeline_test/task/cfauth_login.yml
-#    params:
-#      CF_USERNAME: ((cf-username))
-#      CF_PASSWORD: ((cf-password))
-#      CF_TARGET: ((cf-api))
+    params:
+      CF_USERNAME: ((cf-username))
+      CF_PASSWORD: ((cf-password))
+      CF_TARGET: ((cf-api))
