@@ -1,0 +1,21 @@
+---
+resource_types:
+- name: ubuntu-xenial-image
+  type: docker-image
+  privileged: true
+  source:
+    repository: harbor.tanzu-gss-labs.vmware.com/lab-automation/ubuntu
+    tag: xenial
+    ca_certs: ((harbor_root_ca_cert.certificate))
+    insecure_registries: ["harbor.tanzu-gss-labs.vmware.com"]
+- name: config
+  type: git
+  source:
+    uri: ((cfauth-testing))
+    private_key: ((rios-plat-auto-pipes-deploy-key.private_key))
+    branch: main
+jobs:
+- name: login
+  serial: true
+  plan: 
+  - 
