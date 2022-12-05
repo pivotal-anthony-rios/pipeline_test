@@ -6,24 +6,41 @@ resource_types:
   source:
     repository: harbor.tanzu-gss-labs.vmware.com/lab-automation/ubuntu
     tag: xenial
-    ca_certs: ((harbor_root_ca_cert.certificate))
+    ca_certs: ((harbor_root_ca_cert))
     insecure_registries: ["harbor.tanzu-gss-labs.vmware.com"]
 resources:
 - name: config
   type: git
   source:
     uri: ((cfauth-testing))
-    private_key: ((rios-plat-auto-pipes-deploy-key.private_key))
-    branch: main
+    private_key: ((rios-plat-auto-pipes-deploy-key))
+    branch: master
+- name: test-repo-source
+  type: git
+  source:
+    uri: ((cfauth-testing))
+    private_key: ((rios-plat-auto-pipes-deploy-key))
+    branch: master
+- name: platform-automation-image
+  type: s3
+  source:
+    endpoint: ((minio_endpoint))
+    access_key_id: ((minio_access_key_id))
+    secret_access_key: ((minio_secret_access_key))
+    bucket: ((s3_image_bucket))
+    regexp: platform-automation-image-(.*).tgz
+    skip_ssl_verification: true
 jobs:
 - name: login
   serial: true
-  plan: 
-  - get: config
-  - get: ubuntu-xenial-image
-  - task: auth-login
-    image: ubuntu-xenial-image
-    file: pipeline_test/task/
+  plan:
+  - in_parallel: 
+    - get: config
+    - get: test-repo-source
+    - get: platform-automation-image
+  - task: cfauth-login
+    image: platform-automation-image
+    file: pipeline_test/task/cfauth_login.yml
     params:
       CF_USERNAME: ((cf-username))
       CF_PASSWORD: ((cf-password))
