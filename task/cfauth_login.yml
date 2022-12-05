@@ -1,9 +1,5 @@
 ---
 platform: linux
 
-inputs:
-- name: pipeline_test
-- name: config
-
 run:
   path: pipeline_test/tasks/scripts/cf_api_auth.sh
