@@ -1,2 +1,5 @@
 ---
 platform: linux
+
+run:
+  path: ls
