@@ -2,6 +2,7 @@
 
 set -eux
 env
+apt install wget
 wget -O cf.tgz "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=6.32.0&source=github-rel"
 tar xvf cf.tgz
 chmod +x cf
