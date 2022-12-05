@@ -8,6 +8,7 @@ resource_types:
     tag: xenial
     ca_certs: ((harbor_root_ca_cert.certificate))
     insecure_registries: ["harbor.tanzu-gss-labs.vmware.com"]
+resources:
 - name: config
   type: git
   source:
@@ -18,4 +19,12 @@ jobs:
 - name: login
   serial: true
   plan: 
-  - 
+  - get: config
+  - get: ubuntu-xenial-image
+  - task: auth-login
+    image: ubuntu-xenial-image
+    file: pipeline_test/task/
+    params:
+      CF_USERNAME: ((cf-username))
+      CF_PASSWORD: ((cf-password))
+      CF_TARGET: ((cf-api))
