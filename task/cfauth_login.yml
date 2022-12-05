@@ -7,7 +7,7 @@ params:
   CF_TARGET:
 
 inputs:
-- name: pipeline_test
+#- name: pipeline_test
 - name: config
 
 run:
