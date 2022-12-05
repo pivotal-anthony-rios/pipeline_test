@@ -44,5 +44,5 @@ jobs:
     file: pipeline_test/task/cfauth_login.yml
     params:
       CF_USERNAME: ((cf-username))
-      CF_PASSWORD: ((cf-password))
-      CF_TARGET: ((cf-api))
+      CF_PASSWORD: "((cf-password))"
+      CF_TARGET: "((cf-api))"

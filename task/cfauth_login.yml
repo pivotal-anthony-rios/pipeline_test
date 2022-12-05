@@ -2,7 +2,7 @@
 platform: linux
 
 inputs:
-- name: pipeline_test
+#- name: pipeline_test
 - name: config
 
 params:
