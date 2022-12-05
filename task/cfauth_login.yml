@@ -11,4 +11,4 @@ inputs:
 - name: config
 
 run:
-  path: pipeline_test/tasks/scripts/cf_api_auth.sh
+  path: pipeline_test/task/scripts/cf_api_auth.sh
